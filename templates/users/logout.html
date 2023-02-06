@@ -1,0 +1,27 @@
+{% extends "users/auth_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log out" %}{% endblock %}
+
+{% block content %}
+{% load static %}
+<section id="login">
+    <div class="left-container">
+        <div class="shadow-box">
+            <div class="head">
+				<h2>{{title}}</h2>
+				<span class="separator"></span>
+			</div>
+			<div class="form-item login-button">
+				<p>Successfully Logout</p>
+				<a href="{% url 'web:index' %}" class="button">Go to Home</a>
+			</div>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="thumb">
+            <!-- <img src="./images/login-bg.jpg" alt="Login image" /> -->
+        </div>
+    </div>
+</section>
+{% endblock %}

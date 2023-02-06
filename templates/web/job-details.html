@@ -1,0 +1,190 @@
+{% extends "web/base.html" %}
+{% load static %}
+{% load main_template_tags %}
+
+{% block content %}
+<main class="main">
+  <section class="section-box-2">
+    <div class="container">
+      <div class="banner-hero banner-image-single">
+        <img src="{% static 'assets/imgs/page/job-single/thumb.png' %}" alt="fiveM">
+      </div>
+      <div class="row mt-10">
+        <div class="col-lg-8 col-md-12">
+          <h3>{{ instance.job_title }}</h3>
+          <div class="mt-0 mb-15">
+            <span class="card-briefcase">
+              {% if instance.job_type == 'freelancer' %}
+                Freelancer
+              {% else %}
+                Fulltime
+              {% endif %}
+            </span>
+            <span class="card-time">{{ instance.post_date|time_until }}</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 text-lg-end">
+          <a class="action-button reload btn btn-apply-icon btn-apply-big hover-up" href="{% url 'users:apply_job' pk=instance.pk %}" data-id="" data-text="{{confirm_apply_message}}" data-title="Are you sure?">Apply now</a>
+        </div>
+      </div>
+      <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+  </section>
+  <section class="section-box mt-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="job-overview">
+            <h5 class="border-bottom pb-15 mb-30">Employment Information</h5>
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/industry.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description industry-icon mb-10">Industry</span>
+                  <strong class="small-heading"> {{ instance.industry }}</strong>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/job-level.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description joblevel-icon mb-10">Job level</span>
+                  <strong class="small-heading">{{ instance.job_level }}</strong>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-25">
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/salary.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description salary-icon mb-10">Salary</span>
+                  <strong class="small-heading">₹{{instance.amnt_start_per_hrs}} - ₹{{instance.amnt_end_per_hrs}}</strong>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/experience.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description experience-icon mb-10">Experience</span>
+                  <strong class="small-heading">{{instance.experience}}</strong>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-25">
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/job-type.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description jobtype-icon mb-10">Job type</span>
+                  <strong class="small-heading">Permanent</strong>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/deadline.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description mb-10">Deadline</span>
+                  <strong class="small-heading">{{instance.deadline}}</strong>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-25">
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/updated.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description jobtype-icon mb-10">Updated</span>
+                  <strong class="small-heading">{{instance.post_date}}</strong>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item">
+                  <img src="{% static 'assets/imgs/page/job-single/location.svg' %}" alt="fiveM">
+                </div>
+                <div class="sidebar-text-info ml-10">
+                  <span class="text-description mb-10">Location</span>
+                  <strong class="small-heading">{{instance.city}}, {{instance.state}}, {{instance.country}}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+
+            {{ instance.description | safe }}
+          </div>
+          <div class="author-single">
+            <span>{{instance.user.name}}</span>
+          </div>
+          <div class="single-apply-jobs">
+            <div class="row align-items-center">
+              <div class="col-md-5">
+                <a class="btn action-button reload btn-default mr-15" href="{% url 'users:apply_job' pk=instance.pk %}" data-id="" data-text="{{confirm_apply_message}}" data-title="Are you sure?">Apply now</a>
+                <a class="btn action-button-no-confirm no-popup reload btn btn-border" href="{% url 'users:save_job' pk=instance.pk %}">Save job</a>
+              </div>
+              <div class="col-md-7 text-lg-end social-share">
+                <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6>
+                <a class="mr-5 d-inline-block d-middle" href="{{ instance.user.facebook }}">
+                  <img alt="fiveM" src="{% static 'assets/imgs/template/icons/share-fb.svg' %}" />
+                </a>
+                <a class="mr-5 d-inline-block d-middle" href="{{ instance.user.twitter }}">
+                  <img alt="fiveM" src="{% static 'assets/imgs/template/icons/share-tw.svg' %}" />
+                </a>
+                <a class="mr-5 d-inline-block d-middle" href="{{ instance.user.werbsite }}">
+                  <img alt="fiveM" src="{% static 'assets/imgs/template/icons/share-red.svg' %}" />
+                </a>
+                <a class="d-inline-block d-middle" href="{{ instance.user.instagram }}">
+                  <img alt="fiveM" src="{% static 'assets/imgs/template/icons/share-whatsapp.svg' %}" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+          <div class="sidebar-border">
+            <div class="sidebar-heading">
+              <div class="avatar-sidebar">
+                <figure>
+                  {% if instance.user.file %}
+                    <img alt="profile" id="avatar" src="{{ instance.user.file.url }}">
+                  {% else %}
+                    <img alt="profile" id="avatar" src="https://avatar.oxro.io/avatar.svg?name={{profile.name | default:'User'}}&background=3c65f5&caps=3&bold=true">
+                  {% endif %}
+                </figure>
+                <div class="sidebar-info">
+                  <span class="sidebar-company">{{instance.user.name}}</span>
+                  <span class="card-location">{{instance.state}}, {{instance.country}}</span>
+                  <a class="link-underline mt-15" href="#">{{ instance.user|get_jobs_count }} Open Jobs</a>
+              </div>
+              </div>
+            </div>
+            <div class="sidebar-list-job">
+              <div class="box-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.3150609575905!2d-87.6235655!3d41.886080899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca8b34afe61%3A0x6caeb5f721ca846!2s205%20N%20Michigan%20Ave%20Suit%20810%2C%20Chicago%2C%20IL%2060601%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1658551322537!5m2!1svi!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <ul class="ul-disc">
+                <li>{{instance.city}}, {{instance.state}}, {{instance.country}}</li>
+                <li>Phone: <a href="tel:{{instance.user.phone}}">{{instance.user.phone}}</a></li>
+                <li>Email: <a href="mailto:{{instance.user.email}}">{{instance.user.email}}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block static %}
+{% load static %}
+
+{% endblock %}

@@ -1,0 +1,215 @@
+<form action="{% url 'users:edit_profile' %}" class="ajax redirect" method="post">
+{% csrf_token %}
+<div class="row form-contact">
+    <div class="col-lg-6 col-md-12">
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.name.id_for_label }}">
+            {{ form.name.label }}
+            {% if form.name.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.name.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.name.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.name }}
+
+            {% if form.name.errors %}
+            <label class="error">{{ form.name.errors.as_text }}</label>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.gender.id_for_label }}">
+            {{ form.gender.label }}
+            {% if form.gender.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.gender.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.gender.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.gender }}
+
+            {% if form.gender.errors %}
+            <label class="error">{{ form.gender.errors.as_text }}</label>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.phone.id_for_label }}">Phone</label>
+            <input disabled="disabled" type="text" class="form-control" value="{{user.username}}" />
+        </div>
+
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.bio.id_for_label }}">
+            {{ form.bio.label }}
+            {% if form.bio.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.bio.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.bio.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.bio }}
+
+            {% if form.bio.errors %}
+            <label class="error">{{ form.bio.errors.as_text }}</label>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.website.id_for_label }}">
+            {{ form.website.label }}
+            {% if form.website.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.website.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.website.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.website }}
+
+            {% if form.website.errors %}
+            <label class="error">{{ form.website.errors.as_text }}</label>
+            {% endif %}
+        </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+        <!-- <div class="box-skills">
+            <h5 class="mt-0 color-brand-1">Skills</h5>
+            <div class="form-contact">
+            <div class="form-group">
+                <input class="form-control search-icon" type="text" value="" placeholder="E.g. Angular, Laravel...">
+            </div>
+            </div>
+            <div class="box-tags mt-30"><a class="btn btn-grey-small mr-10">Figma<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Adobe XD<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NextJS<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">React<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">App<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Digital<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NodeJS<span class="close-icon"></span></a></div>
+            <div class="mt-40"> <span class="card-info font-sm color-text-paragraph-2">You can add up to 15 skills</span></div>
+        </div> -->
+
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.email.id_for_label }}">
+            {{ form.email.label }}
+            {% if form.email.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.email.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.email.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.email }}
+
+            {% if form.email.errors %}
+            <label class="error">{{ form.email.errors.as_text }}</label>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label  class="font-sm color-text-mutted mb-10" for="{{ form.address.id_for_label }}">
+            {{ form.address.label }}
+            {% if form.address.field.required %}
+                <small class="star">*</small>
+            {% endif %}
+
+            {% if form.address.help_text %}
+                <span data-original-title="Field Info" title="" data-content="{{ form.address.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+            {% endif %}
+            </label>
+            {{ form.address }}
+
+            {% if form.address.errors %}
+            <label class="error">{{ form.address.errors.as_text }}</label>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+            <div class="form-group">
+                <label  class="font-sm color-text-mutted mb-10" for="{{ form.pincode.id_for_label }}">
+                {{ form.pincode.label }}
+                {% if form.pincode.field.required %}
+                    <small class="star">*</small>
+                {% endif %}
+
+                {% if form.pincode.help_text %}
+                    <span data-original-title="Field Info" title="" data-content="{{ form.pincode.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                {% endif %}
+                </label>
+                {{ form.pincode }}
+
+                {% if form.pincode.errors %}
+                <label class="error">{{ form.pincode.errors.as_text }}</label>
+                {% endif %}
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="form-group">
+                <label  class="font-sm color-text-mutted mb-10" for="{{ form.city.id_for_label }}">
+                {{ form.city.label }}
+                {% if form.city.field.required %}
+                    <small class="star">*</small>
+                {% endif %}
+
+                {% if form.city.help_text %}
+                    <span data-original-title="Field Info" title="" data-content="{{ form.city.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                {% endif %}
+                </label>
+                {{ form.city }}
+
+                {% if form.city.errors %}
+                <label class="error">{{ form.city.errors.as_text }}</label>
+                {% endif %}
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="form-group">
+                <label  class="font-sm color-text-mutted mb-10" for="{{ form.state.id_for_label }}">
+                {{ form.state.label }}
+                {% if form.state.field.required %}
+                    <small class="star">*</small>
+                {% endif %}
+
+                {% if form.state.help_text %}
+                    <span data-original-title="Field Info" title="" data-content="{{ form.state.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                {% endif %}
+                </label>
+                {{ form.state }}
+
+                {% if form.state.errors %}
+                <label class="error">{{ form.state.errors.as_text }}</label>
+                {% endif %}
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="form-group">
+                <label  class="font-sm color-text-mutted mb-10" for="{{ form.country.id_for_label }}">
+                {{ form.country.label }}
+                {% if form.country.field.required %}
+                    <small class="star">*</small>
+                {% endif %}
+
+                {% if form.country.help_text %}
+                    <span data-original-title="Field Info" title="" data-content="{{ form.country.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                {% endif %}
+                </label>
+                {{ form.country }}
+
+                {% if form.country.errors %}
+                <label class="error">{{ form.country.errors.as_text }}</label>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+        <div class="box-button mt-15">
+            <button class="btn btn-apply-big font-md font-bold">{% if profile is not None %}Update{% else %}Save{% endif %} All Changes</button>
+        </div>
+    </div>
+</div>
+</form>

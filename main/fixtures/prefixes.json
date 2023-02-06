@@ -1,0 +1,26 @@
+[
+	{
+	    "model": "main.Prefix",
+	    "pk": 1,
+	    "fields": {
+	      "code": "supplier_invoice",
+	      "prefix" : "IN"
+	    }
+	},
+	{
+	    "model": "main.Prefix",
+	    "pk": 2,
+	    "fields": {
+	      "code": "service_job",
+	      "prefix" : "SJ"
+	    }
+	},
+	{
+	    "model": "main.Prefix",
+	    "pk": 3,
+	    "fields": {
+	      "code": "supplier_payment",
+	      "prefix" : "SP"
+	    }
+	}
+]

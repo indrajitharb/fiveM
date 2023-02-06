@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#0E0E0E">
+    <meta name="template-color" content="#0E0E0E">
+    <!-- <link rel="manifest" href="https://wp.alithemes.com/html/fiveM/demos/manifest.js' %}on" crossorigin> -->
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <meta name="description" content="Index page">
+    <meta name="keywords" content="index, page">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/imgs/template/favicon.svg' %}" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <title>{{title}} | fiveM</title>
+  </head>
+  <body>
+    <div id="preloader-active">
+      <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+          <div class="text-center"><img src="{% static 'assets/imgs/template/loading.gif' %}" alt="fiveM"></div>
+        </div>
+      </div>
+    </div>
+    <header class="header sticky-bar">
+      <div class="container">
+        <div class="main-header">
+          <div class="header-left">
+            <div class="header-logo">
+              <a class="d-flex" href="{% url 'web:index' %}">
+                <img alt="fiveM" src="{% static 'assets/imgs/template/jobhub-logo.svg' %}">
+              </a>
+              </div>
+          </div>
+          <div class="header-nav">
+            <nav class="nav-main-menu">
+              <ul class="main-menu">
+                <li><a class="{% if is_home %} active {% endif %}" href="{% url 'web:index' %}">Home</a></li>
+                <li><a class="{% if is_about %} active {% endif %}" href="{% url 'web:about' %}">About Us</a></li>
+                <li><a class="{% if is_contact %} active {% endif %}" href="{% url 'web:contact' %}">Contact Us</a></li>
+              </ul>
+            </nav>
+            <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+          </div>
+          <div class="header-right">
+            {% if not request.user.is_authenticated %}
+              <a class="btn btn-default btn-shadow ml-40 hover-up" href="{% url 'app' %}">Get Started</a></div>
+            {% else %}
+              <!-- profile -->
+              <div class="block-signin">
+                <div class="dropdown d-inline-block member-login">
+                  <b class="btn icon-down" id="dropdownProfile" type="button" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
+                      {% if profile.file %}
+                          <img alt="profile" id="profilePic" src="{{ profile.file.url }}">
+                      {% else %}
+                          <img alt="profile" id="profilePic" src="https://avatar.oxro.io/avatar.svg?name={{profile.name | default:'User'}}&background=3c65f5&caps=3&bold=true">
+                      {% endif %}
+                      <div class="info-member"> 
+                          <strong class="color-brand-1">{{ profile.name | default:'-'}}</strong>
+                          <div class="dropdown">
+                              <b class="font-xs color-text-paragraph-2">{{ current_role }}</b>
+                          </div>
+                      </div>
+                  </b>
+                  <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownProfile">
+                      <li>
+                        {% if current_role == 'Employer' %}
+                          <a class="dropdown-item" href="{% url 'company:my_profile' %}">Profiles</a>
+                        {% else %}
+                          <a class="dropdown-item" href="{% url 'users:my_profile' %}">Profiles</a>
+                        {% endif %}
+                      </li>
+                      <li><a class="dropdown-item" href="{% url 'users:user_logout' %}">Logout</a></li>
+                  </ul>
+              </div>
+            </div>
+            {% endif %}
+        </div>
+      </div>
+    </header>
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+      <div class="mobile-header-wrapper-inner">
+        <div class="mobile-header-content-area">
+          <div class="perfect-scroll">
+            <div class="mobile-search mobile-header-border mb-30">
+              <form action="#">
+                <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
+              </form>
+            </div>
+            <div class="mobile-menu-wrap mobile-header-border">
+              <!-- mobile menu start-->
+              <nav>
+                <ul class="mobile-menu font-heading">
+                  <li><a class="{% if is_home %} active {% endif %}" href="{% url 'web:index' %}">Home</a></li>
+                <li><a class="{% if is_about %} active {% endif %}" href="{% url 'web:about' %}">About Us</a></li>
+                <li><a class="{% if is_contact %} active {% endif %}" href="{% url 'web:contact' %}">Contact Us</a></li>
+                </ul>
+              </nav>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="mobile-account">
+              <h6 class="mb-10">Your Account</h6>
+              <ul class="mobile-menu font-heading">
+                <li><a href="{% url 'users:my_profile' %}">Profile</a></li>
+                <li><a href="#">Work Preferences</a></li>
+                <li><a href="#">Account Settings</a></li>
+                <li><a href="#">Go Pro</a></li>
+                <li><a href="{% url 'users:user_logout' %}">Sign Out</a></li>
+              </ul>
+            </div>
+            {% endif %}
+            <div class="mt-10 site-copyright">Copyright {% now 'Y' %} &copy; fiveM. <br>Designed by 3-kings.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+    {% if not request.user.is_authenticated %}
+      <section class="section-box mt-50 mb-20">
+        <div class="container">
+          <div class="box-newsletter box-newsletter-3">
+            <div class="row">
+              <div class="col-xl-12 text-center">
+                <div class="d-inline-block">
+                  <h2 class="color-white mt-30">Join as Employer</h2>
+                  <div class="text-center mt-30">
+                    <a href="{% url 'company:login' %}" class="btn btn-default">Get Started</a>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  
+    <footer class="footer mt-50">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1 col-md-3 col-sm-12">
+            <a style="display: block;" href="{% url 'web:index' %}">
+              <img alt="fiveM" src="{% static 'assets/imgs/template/jobhub-logo.svg' %}">
+            </a>
+            <div class="mt-20 mb-20 font-xs color-text-paragraph-2">fiveM is the heart of the design community and the best resource to discover and connect with designers and jobs worldwide.</div>
+            <div class="footer-social">
+              <a class="icon-socials icon-facebook" href="#"></a>
+              <a class="icon-socials icon-twitter" href="#"></a>
+              <a class="icon-socials icon-linkedin" href="#"></a>
+            </div>
+          </div>
+          <div class="footer-col-2 col-md-2 col-xs-6">
+            <h6 class="mb-20">Resources</h6>
+            <ul class="menu-footer">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-3 col-md-2 col-xs-6">
+            <h6 class="mb-20">Community</h6>
+            <ul class="menu-footer">
+              <li><a href="#">Feature</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Credit</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-4 col-md-2 col-xs-6">
+            <h6 class="mb-20">Quick links</h6>
+            <ul class="menu-footer">
+              <li><a href="#">iOS</a></li>
+              <li><a href="#">Android</a></li>
+              <li><a href="#">Microsoft</a></li>
+              <li><a href="#">Desktop</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-5 col-md-2 col-xs-6">
+            <h6 class="mb-20">More</h6>
+            <ul class="menu-footer">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-6 col-md-3 col-sm-12">
+            <h6 class="mb-20">Download App</h6>
+            <p class="color-text-paragraph-2 font-xs">Download our Apps and get extra 15% Discount on your first Order&mldr;!</p>
+            <div class="mt-15"><a class="mr-5" href="#"><img src="{% static 'assets/imgs/template/icons/app-store.png' %}" alt="fiveM"></a><a href="#"><img src="{% static 'assets/imgs/template/icons/android.png' %}" alt="fiveM"></a></div>
+          </div>
+        </div>
+        <div class="footer-bottom mt-50">
+          <div class="row">
+            <div class="col-md-6"><span class="font-xs color-text-paragraph">Copyright &copy; {% now 'Y' %}. fiveM all right reserved</span></div>
+            <div class="col-md-6 text-md-end text-start">
+              <div class="footer-social"><a class="font-xs color-text-paragraph" href="#">Privacy Policy</a><a class="font-xs color-text-paragraph mr-30 ml-30" href="#">Terms &amp; Conditions</a><a class="font-xs color-text-paragraph" href="#">Security</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{% static 'assets/js/vendor/jquery-3.5.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/wow.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/isotope.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/scrollup.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/counterup.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <style>
+      .btn.btn-default:hover {
+        background-color: #1a385c;
+        transform: translateY(-2px);
+        transition: 0.2s;
+      }
+      .perfect-scroll{
+        height: unset;
+      }
+      /* .mobile-header-wrapper-style{ */
+        /* z-index: 1000; */
+      /* } */
+      /* .burger-icon{} */
+      .header .main-header .header-right .member-login {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .header .main-header .header-right .member-login img {
+        float: left;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        margin: 0px 10px 0px 0px;
+        vertical-align: middle;
+      }
+      .header .main-header .header-right .member-login .info-member {
+        padding-left: 45px;
+        text-align: left;
+        line-height: 19px;
+      }
+      .header .main-header .header-right .member-login .info-member strong {
+        display: block;
+      }
+      .dropdown {
+        position: relative;
+      }
+      footer{
+        -moz-box-shadow: 0 -1px 20px 0px rgb(59 101 245 / 40%);
+        -webkit-box-shadow: 0 -1px 20px 0px rgb(59 101 245 / 40%);
+        box-shadow: 0 -1px 20px 0px rgb(59 101 245 / 40%);
+        padding: 40px 0 0;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+      }
+      .image-compay {
+        position: absolute;
+        top: -80px;
+        left: 0px;
+        width: 85px;
+      }
+      .image-compay image{
+        display: block;
+        width: 100%;
+      }
+      .selecty .selecty-selected{
+        width: 100%;
+        border: 2px solid #e0e6f6;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 22px;
+        background: #fff;
+        height: 53px;
+        box-shadow: none;
+        padding: 11px 15px 13px 20px;
+        color: #a0abb8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .preloader:not([class*="pl-"]){
+        width: 100%;
+      }
+      .preloader {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999999;
+        transition: 0.6s;
+        margin: 0 auto;
+      }
+      .align-items-center {
+        align-items: center!important;
+      }
+      .justify-content-center {
+        justify-content: center!important;
+      }
+      .d-flex {
+        display: flex!important;
+      }
+      .position-relative {
+        position: relative!important;
+      }
+      .text-center {
+        text-align: center!important;
+      }
+      .preloader img {
+        max-width: 250px;
+      }
+      .body-overlay-1 {
+        background: transparent;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        visibility: hidden;
+        width: 100%;
+        cursor: crosshair;
+        z-index: 997;
+      }
+    </style>
+
+    {% block static %}
+    {% endblock %}
+  </body>
+</html>

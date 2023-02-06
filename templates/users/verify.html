@@ -1,0 +1,121 @@
+{% extends "users/auth_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log in" %}{% endblock %}
+
+{% block content %}
+{% load static %}
+<section id="login">
+    <div class="left-container">
+        <div class="shadow-box">
+            <div class="head">
+                <h2>Enter your OTP</h2>
+                <span class="separator"></span>
+            </div>
+            <form  class="ajax no-popup redirect" action="{% url 'users:verify' pk=instance.pk %}" method="post">
+                {% csrf_token %}
+                <p style="margin-bottom: 20px;">
+                    <b>Your OTP Is : {{ instance.otp }}</b>
+                </p>
+                <div class="form-item">
+                    {{ form.otp }}
+                    <label for="{{form.otp.id_for_label}}">{{form.otp.label}}</label>
+                </div>
+                <b id="id_resend" class="button">Resend OTP</b>
+                <br class="clear" />
+
+                <p id="sms_msg" class="m-t-10 w-100-p pos-a t-a-c d-n">
+                    <span class="icon icon-ok-circled2"></span>
+                    <b>Successfully Resend OTP</b>
+                </p>
+                
+                <div class="form-item login-button" >
+                    <button type="submit">Verify</button>
+                </div>
+            </form>    
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="thumb">
+            <!-- <img src="./images/login-bg.jpg" alt="Login image" /> -->
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block static %}
+{% load static %}
+<style>
+    #id_resend{
+        padding: 4px 8px;
+        cursor: pointer;
+        color: #22b573;
+        font-weight: bold;
+        float: right;
+        margin-bottom: 20px;
+    }
+    #sms_msg{
+        display: none;
+        color: #22b573;
+        position: absolute;
+        bottom: 45px;
+    }
+    section#login div.left-container div.shadow-box form div.form-item {
+        position: relative;
+        margin-bottom: 5px;
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'css/toastr.min.css' %}" type="text/css" />
+
+<script  src="{% static 'js/toastr.min.js' %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_resend').click(function () {
+            var $this = $(this);
+            redend_otp($this);
+        });
+
+        function redend_otp(element){
+            url = "{% url 'users:resend_otp' pk=instance.pk %}";
+            $.ajax({
+                type : 'GET',
+                url : url,
+                dataType : 'json',
+                data : {},
+                success : function (data) {
+                    var status = data['status'];
+                    if (status == 'true') {
+                        var title = 'Successful';
+                        var message = 'Successfully Resend OTP';
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        toastr["success"](message,title);
+                    }
+                },
+                error : function (data){
+
+                }
+            });
+        }
+    });
+
+</script>
+{% endblock %}

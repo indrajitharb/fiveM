@@ -1,0 +1,63 @@
+{% load static %}
+<ul class="main-menu">
+    <li> 
+        <a class="dashboard2 {% if is_dashboard %} active {% endif %}" href="{% url 'company:dashboard' %}">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/dashboard.svg' %}" alt="fiveM">
+        <span class="name">Dashboard</span>
+        </a>
+    </li>
+    <li> 
+        <a class="dashboard2 {% if is_request %} active {% endif %}" href="{% url 'company:request' %}">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/candidates.svg' %}" alt="fiveM">
+        <span class="name">Request</span>
+        </a>
+    </li>
+    <!-- <li> 
+        <a class="dashboard2 {% if is_dashboard %} active {% endif %}" href="">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/recruiters.svg' %}" alt="fiveM">
+        <span class="name">Recruiters</span>
+        </a>
+    </li> -->
+    <li> 
+        <a class="dashboard2 {% if is_my_jobs %} active {% endif %}" href="{% url 'company:my_posts' %}">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/jobs.svg' %}" alt="fiveM">
+        <span class="name">My Jobs</span>
+        </a>
+    </li>
+    <!-- <li> 
+        <a class="dashboard2 {% if is_dashboard %} active {% endif %}" href="">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/tasks.svg' %}" alt="fiveM">
+        <span class="name">Tasks List</span>
+        </a>
+    </li> -->
+    <li> 
+        <a class="dashboard2 {% if is_my_profile %} active {% endif %}" href="{% url 'company:my_profile' %}">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/profiles.svg' %}" alt="fiveM">
+        <span class="name">My Profiles</span>
+        </a>
+    </li>
+    <!-- <li> 
+        <a class="dashboard2 {% if is_dashboard %} active {% endif %}" href="">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/cv-manage.svg' %}" alt="fi
+        veM"><span class="name">CV Manage</span>
+        </a>
+    </li> -->
+    <!-- <li> 
+        <a class="dashboard2 {% if is_dashboard %} active {% endif %}" href="">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/settings.svg' %}" alt="fiveM">
+        <span class="name">Setting</span>
+        </a>
+    </li> -->
+    <li> 
+        <a class="dashboard2 {% if is_change_password %} active {% endif %}" href="">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/authentication.svg' %}" alt="fiveM">
+        <span class="name">Change Password</span>
+        </a>
+    </li>
+    <li> 
+        <a class="dashboard2" href="{% url 'users:user_logout' %}">
+        <img src="{% static 'dashboard/assets/imgs/page/dashboard/logout.svg' %}" alt="fiveM">
+        <span class="name">Logout</span>
+        </a>
+    </li>
+</ul>

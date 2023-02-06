@@ -1,0 +1,127 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load main_template_tags %}
+
+{% block content %}
+<div class="row"> 
+  <div class="col-lg-12"> 
+    <div class="section-box">
+      <div class="container"> 
+        <div class="panel-white mb-30">
+          <div class="box-padding">
+            <div class="row mb-30"> 
+              <div class="col-12"> 
+                <div class="box-list-character">
+                  <ul>
+                    <li><a class="active" href="#">A</a></li>
+                    <li><a href="#">B</a></li>
+                    <li><a href="#">C</a></li>
+                    <li><a href="#">D</a></li>
+                    <li><a href="#">E</a></li>
+                    <li><a href="#">F</a></li>
+                    <li><a href="#">G</a></li>
+                    <li><a href="#">H</a></li>
+                    <li><a href="#">I</a></li>
+                    <li><a href="#">J</a></li>
+                    <li><a href="#">K</a></li>
+                    <li><a href="#">L</a></li>
+                    <li><a href="#">M</a></li>
+                    <li><a href="#">N</a></li>
+                    <li><a href="#">O</a></li>
+                    <li><a href="#">P</a></li>
+                    <li><a href="#">Q</a></li>
+                    <li><a href="#">R</a></li>
+                    <li><a href="#">S</a></li>
+                    <li><a href="#">T</a></li>
+                    <li><a href="#">U</a></li>
+                    <li><a href="#">V</a></li>
+                    <li><a href="#">W</a></li>
+                    <li><a href="#">X</a></li>
+                    <li><a href="#">Y</a></li>
+                    <li><a href="#">Z</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              {% for instance in instances %}
+              <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card-grid-2 hover-up">
+                  <div class="card-grid-2-image-left">
+                    <div class="card-grid-2-image-rd online">
+                      <a href="">
+                        <figure>
+                          {% if instance.user.file %}
+                            <img alt="profile" id="avatar" src="{{ instance.user.file.url }}">
+                          {% else %}
+                            <img alt="profile" id="avatar" src="https://avatar.oxro.io/avatar.svg?name={{profile.name | default:'User'}}&background=3c65f5&caps=3&bold=true">
+                          {% endif %}
+                        </figure>
+                      </a>
+                    </div>
+                    <div class="card-profile pt-10"><a href="">
+                        <h5>{{instance.user.name}}</h5>
+                      </a>
+                      <span class="font-xs color-text-mutted">UI/UX Designer</span>
+                      <div class="rate-reviews-small pt-5">
+                        <span>
+                          <img src="{% static 'assets/imgs/template/icons/star.svg' %}" alt="fiveM">
+                        </span>
+                        <span>
+                          <img src="{% static 'assets/imgs/template/icons/star.svg' %}" alt="fiveM">
+                        </span>
+                        <span>
+                          <img src="{% static 'assets/imgs/template/icons/star.svg' %}" alt="fiveM">
+                        </span>
+                        <span>
+                          <img src="{% static 'assets/imgs/template/icons/star.svg' %}" alt="fiveM">
+                        </span>
+                        <span>
+                          <img src="{% static 'assets/imgs/template/icons/star.svg' %}" alt="fiveM">
+                        </span>
+                        <span class="ml-10 color-text-mutted font-xs">(65)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-block-info">
+                    <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis?</p>
+                    <div class="card-2-bottom card-2-bottom-candidate mt-30">
+                      <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">Adobe XD</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">PSD</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">App</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">Digital</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">Adobe Illustrator</a><a class="btn btn-tags-sm mb-10 mr-5" href="https://wp.alithemes.com/html/fiveM/demos/dashboard/jobs-grid.html">Sketch</a>
+                      </div>
+                    </div>
+                    <div class="employers-info align-items-center justify-content-center mt-15">
+                      <div class="row">
+                        <div class="col-6"><span class="d-flex align-items-center"><i class="fi-rr-marker mr-5 ml-0"></i><span class="font-sm color-text-mutted">Chicago, US</span></span></div>
+                        <div class="col-6"><span class="d-flex justify-content-end align-items-center"><i class="fi-rr-clock mr-5"></i><span class="font-sm color-brand-1">$45 / hour</span></span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="paginations">
+              <ul class="pager">
+                <li><a class="pager-prev" href="#"></a></li>
+                <li><a class="pager-number" href="#">1</a></li>
+                <li><a class="pager-number" href="#">2</a></li>
+                <li><a class="pager-number" href="#">3</a></li>
+                <li><a class="pager-number" href="#">4</a></li>
+                <li><a class="pager-number" href="#">5</a></li>
+                <li><a class="pager-number active" href="#">6</a></li>
+                <li><a class="pager-number" href="#">7</a></li>
+                <li><a class="pager-next" href="#"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block static %}
+{% load static %}
+
+{% endblock %}

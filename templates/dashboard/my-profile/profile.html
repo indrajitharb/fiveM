@@ -1,0 +1,259 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="row"> 
+    <div class="col-xxl-12 col-xl-12 col-lg-12">
+      <div class="section-box">
+        <div class="container"> 
+          <div class="panel-white mb-30">
+            <div class="box-padding">
+              <h6 class="color-text-paragraph-2">Update your profile</h6>
+              <form action="{% url 'company:photo_upload' %}" method="post" enctype="multipart/form-data" id="formUpload">
+                {% csrf_token %}
+                <div class="box-profile-image"> 
+                  <div class="img-profile"> 
+                    {% if instance.file %}
+                      <img alt="profile" id="avatar" src="{{ instance.file.url }}">
+                    {% else %}
+                      <img alt="profile" id="avatar" src="https://avatar.oxro.io/avatar.svg?name={{profile.name | default:'User'}}&background=3c65f5&caps=3&bold=true">
+                    {% endif %}
+                  </div>
+                  <div class="info-profile"> 
+                    {{ photoForm }}
+                    {% if instance.file %}
+                      <a title="Delete Avatar" href="{% url 'company:delete_avatar' %}" class="action-button no-popup reload btn btn-delete" data-id="" data-text="{{confirm_delete_message}}" data-title="Are you sure?">Delete</a>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+                <div class="alert" role="alert"></div>
+              </form>
+              <div class="modal fade" id="modalCrop" tabindex="-1" role="img" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="img-container">
+                        <img id="cropImage" src="">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-primary" id="crop">Crop</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <form action="." class="ajax redirect" method="post">
+                {% csrf_token %}
+                <div class="row"> 
+                  {% for field in form %}
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ field.id_for_label }}">
+                          {{ field.label }}
+                          {% if field.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if field.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ field.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ field }}
+
+                        {% if field.errors %}
+                          <label class="error">{{ field.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                  <div class="col-lg-12"> 
+                    <div class="form-group mt-10">
+                      <button class="btn btn-default btn-brand icon-tick">Save Change</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block static %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assets/css/cropper.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<style>
+  .label {
+    cursor: pointer;
+  }
+
+  .progress {
+    display: none;
+    margin-bottom: 1rem;
+  }
+
+  .alert {
+    display: none;
+  }
+
+  .img-container img {
+    max-width: 100%;
+  }
+  .not-visible {
+    display: none;
+  }
+</style>
+
+<script src="{% static 'assets/js/cropper.js' %}"></script>
+<script>
+  $("#formUpload label").text("Upload Avatar");
+  $("#formUpload label").addClass("btn btn-default btn-brand");
+
+  $(function () {
+      var avatar = document.getElementById('avatar');
+      var profilePic = document.getElementById('profilePic');
+      var image = document.getElementById('cropImage');
+      var input = document.getElementById('id_file');
+      var $progress = $('.progress');
+      var $progressBar = $('.progress-bar');
+      var $alert = $('.alert');
+      var $modal = $('#modalCrop');
+      const imageForm = document.getElementById("formUpload");
+      var cropper;
+      // var x;
+      // var y;
+      const csrf = document.getElementsByName("csrfmiddlewaretoken");
+     
+      $('[data-toggle="tooltip"]').tooltip();
+
+      input.addEventListener('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+          input.value = '';
+          image.src = url;
+          $alert.hide();
+          $modal.modal('show');
+        };
+        var reader;
+        var file;
+        var url;
+
+        if (files && files.length > 0) {
+          file = files[0];
+
+          if (URL) {
+            done(URL.createObjectURL(file));
+          } else if (FileReader) {
+            reader = new FileReader();
+            reader.onload = function (e) {
+              done(reader.result);
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      });
+
+      $modal.on('shown.bs.modal', function () {
+        cropper = new Cropper(image, {
+          aspectRatio: 1,
+          viewMode: 3,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          crop(event) {
+            // x = event.detail.x;
+            // y = event.detail.y;
+          },
+        });
+      }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+        cropper = null;
+      });
+
+      document.getElementById('crop').addEventListener('click', function () {
+        var initialAvatarURL;
+        var canvas;
+        
+        $modal.modal('hide');
+
+        if (cropper) {
+          $progress.show();
+          $alert.removeClass('alert-success alert-warning');
+          canvas = cropper.getCroppedCanvas({
+            width: 160,
+            height: 160,
+          });
+
+          cropData = cropper.getCroppedCanvas().toBlob((blob) => {
+            // {
+            // width: 160,
+            // height: 160,
+          // }
+            const formData = new FormData();
+            formData.append("csrfmiddlewaretoken", csrf[0].value);
+            formData.append("file", blob, "{{instance.name | default:'User'}}.png");
+
+            initialAvatarURL = avatar.src;
+            avatar.src = canvas.toDataURL();
+            profilePic.src = canvas.toDataURL();
+      
+            $.ajax({
+              type: "POST",
+              url: imageForm.action,
+              enctype: "multipart/form-data",
+              data: formData,
+              xhr: function () {
+                var xhr = new XMLHttpRequest();
+
+                xhr.upload.onprogress = function (e) {
+                  var percent = '0';
+                  var percentage = '0%';
+
+                  if (e.lengthComputable) {
+                    percent = Math.round((e.loaded / e.total) * 100);
+                    percentage = percent + '%';
+                    $progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
+                  }
+                };
+
+                return xhr;
+              },
+              success: function (res) {
+                $alert.show().addClass('alert-success').text('Upload success');
+              },
+              error: function () {
+                avatar.src = initialAvatarURL;
+
+                profilePic.src = initialAvatarURL;
+                $alert.show().addClass('alert-warning').text('Upload error');
+              },
+              complete: function () {
+                $progress.hide();
+              },
+              cache: false,
+              contentType: false,
+              processData: false,
+            });
+          });
+          $progress.hide();
+
+        }
+      });
+    
+    });
+ 
+</script>
+{% endblock %}

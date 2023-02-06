@@ -1,0 +1,55 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+
+{% block content %}
+{% load static %}
+<section id="login">
+    <div class="left-container">
+        <div class="shadow-box">
+            <div class="head">
+                <h2>Register</h2>
+                <span class="separator"></span>
+            </div>
+            <form action="." method="post">
+                {% csrf_token %}
+                {% for f in form %}
+                        {{error}}
+                        <div class="form-item">
+                        {{f}}
+                        <label for="{{f.id_for_label}}">{{f.label}}</label>
+                    </div>
+                {% endfor %}
+                <div class="form-item login-button" >
+                    <button type="submit">Login</button>
+                </div>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+            <div class="separator">
+                <b>or</b>
+            </div>   
+            <div class="bottom-container">
+                <a href="#" class="google-auth-button">
+                    <span class="thumb icon">
+                        <img src="{% static 'fonts/google.svg' %}" alt="google" />
+                    </span>
+                    Continue with Google
+                </a>
+                <p> 
+                    New to the Platform?
+                    <a class="sign-up" href="{% url 'registration_register' %}">Sign Up</a>
+                    Now
+                </p>
+                <p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
+            </div>         
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="thumb">
+            <!-- <img src="./images/login-bg.jpg" alt="Login image" /> -->
+        </div>
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,374 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row"> 
+  <div class="col-lg-12">
+    <div class="section-box">
+      <div class="container"> 
+        <div class="panel-white mb-30">
+          <div class="box-padding bg-postjob">
+            <h5 class="icon-edu">Tell us about your role</h5>
+            <div class="row mt-30">
+              <div class="col-lg-9">
+                <form class="ajax redirect" action="." enctype="multipart/form-data" method="post">
+                  {% csrf_token %}
+                  <div class="row">                     
+                    <div class="col-lg-12">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.job_title.id_for_label }}">
+                          {{ form.job_title.label }}
+                          {% if form.job_title.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.job_title.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.job_title.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.job_title }}
+
+                        {% if form.job_title.errors %}
+                          <label class="error">{{ form.job_title.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.industry.id_for_label }}">
+                          {{ form.industry.label }}
+                          {% if form.industry.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.industry.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.industry.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.industry }}
+
+                        {% if form.industry.errors %}
+                          <label class="error">{{ form.industry.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.job_level.id_for_label }}">
+                          {{ form.job_level.label }}
+                          {% if form.job_level.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.job_level.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.job_level.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.job_level }}
+
+                        {% if form.job_level.errors %}
+                          <label class="error">{{ form.job_level.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.experience.id_for_label }}">
+                          {{ form.experience.label }}
+                          {% if form.experience.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.experience.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.experience.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.experience }}
+
+                        {% if form.experience.errors %}
+                          <label class="error">{{ form.experience.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.deadline.id_for_label }}">
+                          {{ form.deadline.label }}
+                          {% if form.deadline.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.deadline.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.deadline.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.deadline }}
+
+                        {% if form.deadline.errors %}
+                          <label class="error">{{ form.deadline.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+
+                    <div class="col-lg-12">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.short_description.id_for_label }}">
+                          {{ form.short_description.label }}
+                          {% if form.short_description.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.short_description.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.short_description.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.short_description }}
+
+                        {% if form.short_description.errors %}
+                          <label class="error">{{ form.short_description.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.description.id_for_label }}">
+                          {{ form.description.label }}
+                          {% if form.description.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.description.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.description.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.description }}
+
+                        {% if form.description.errors %}
+                          <label class="error">{{ form.description.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.city.id_for_label }}">
+                          {{ form.city.label }}
+                          {% if form.city.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.city.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.city.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.city }}
+
+                        {% if form.city.errors %}
+                          <label class="error">{{ form.city.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.state.id_for_label }}">
+                          {{ form.state.label }}
+                          {% if form.state.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.state.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.state.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.state }}
+
+                        {% if form.state.errors %}
+                          <label class="error">{{ form.state.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.country.id_for_label }}">
+                          {{ form.country.label }}
+                          {% if form.country.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.country.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.country.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.country }}
+
+                        {% if form.country.errors %}
+                          <label class="error">{{ form.country.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.job_type.id_for_label }}">
+                          {{ form.job_type.label }}
+                          {% if form.job_type.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.job_type.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.job_type.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.job_type }}
+
+                        {% if form.job_type.errors %}
+                          <label class="error">{{ form.job_type.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.amnt_start_per_hrs.id_for_label }}">
+                          Salary
+                          <small class="star">*</small>
+                          
+                          {% if form.amnt_start_per_hrs.help_text %}
+                            <span data-original-title="Field Info" title="" data-content="{{ form.amnt_start_per_hrs.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline"></span>
+                          {% endif %}
+                          {% if form.amnt_end_per_hrs.help_text %}
+                            <span data-original-title="Field Info" title="" data-content="{{ form.amnt_end_per_hrs.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline"></span>
+                          {% endif %}
+                        </label>
+                        <div class="row"> 
+                          <div class="col-lg-6 col-md-6"> 
+                            {{ form.amnt_start_per_hrs }}
+                          </div>
+                          <div class="col-lg-6 col-md-6"> 
+                            {{ form.amnt_end_per_hrs }}
+                          </div>
+                        </div>
+
+                        {% if form.amnt_start_per_hrs.errors %}
+                          <label class="error">{{ form.amnt_start_per_hrs.errors.as_text }}</label>
+                        {% endif %}
+                        {% if form.amnt_end_per_hrs.errors %}
+                          <label class="error">{{ form.amnt_end_per_hrs.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                        <label class="font-sm color-text-mutted mb-10" for="{{ form.skills.id_for_label }}">
+                          {{ form.skills.label }}
+                          {% if form.skills.field.required %}
+                              <small class="star">*</small>
+                          {% endif %}
+
+                          {% if form.skills.help_text %}
+                              <span data-original-title="Field Info" title="" data-content="{{ form.skills.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                          {% endif %}
+                        </label>
+                        {{ form.skills }}
+
+                        {% if form.skills.errors %}
+                          <label class="error">{{ form.skills.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                      <div class="form-group mb-30"> 
+                         <div class="box-upload">
+                          <!-- <div class="add-file-upload"> --> 
+                            {{ form.photo }}
+                          <!-- </div> -->
+                        </div>
+
+                        {% if form.photo.errors %}
+                          <label class="error">{{ form.photo.errors.as_text }}</label>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12"> 
+                      <div class="form-group mt-10">
+                        <button type="submit" class="btn btn-default btn-brand icon-tick">
+                          {% if instance %}
+                            Update
+                          {% else %}
+                            Post New Job
+                          {% endif %}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block static %}
+{% load static %}
+{{ form.media }}
+<style>
+  .selecty .selecty-selected{
+    width: 100%;
+    border: 2px solid #e0e6f6;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    background: #fff;
+    height: 53px;
+    box-shadow: none;
+    padding: 11px 15px 13px 20px;
+    color: #a0abb8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cke_top {
+    white-space: normal;
+    border-bottom: 1px solid #e0e6f7;
+    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 10px;
+    color: #a0abb8;
+    font-size: 14px;
+  }
+  #cke_1_toolbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .cke_chrome{
+    border: 1px solid #e0e6f7;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+  .cke_bottom{
+    border-top: 1px solid #e0e6f7;
+    background-color: #ffffff;
+  }
+</style>
+
+<script>
+
+</script>
+
+{% endblock %}

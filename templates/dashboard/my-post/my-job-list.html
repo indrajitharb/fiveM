@@ -1,0 +1,113 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load main_template_tags %}
+
+{% block content %}
+<div class="row"> 
+  <div class="col-lg-12"> 
+    <div class="section-box">
+      <div class="container"> 
+        <div class="panel-white mb-30">
+          <div class="box-padding">
+            <!-- <div class="box-filters-job">
+              <div class="row">
+                <div class="col-xl-6 col-lg-5">
+                  <span class="font-sm text-showing color-text-paragraph">Showing 41-60 of 944 jobs</span>
+                </div>
+              </div>
+            </div> -->
+            <div class="row display-list">
+              {% for instance in instances %}
+                <div class="col-lg-6">
+                  <div class="card-style-2 hover-up">
+                    <div class="card-head">
+                      <div class="card-image"> 
+                        <img src="{{ instance.photo.url }}" alt="fiveM">
+                      </div>
+                      <div class="card-title"> 
+                        <h6> <a href="{% url 'company:my_job' pk=instance.pk %}">{{ instance.job_title }}</a></h6>
+                        <span class="job-type">{{ instance.job_type }}</span>
+                        <span class="time-post"> {{ instance.post_date|time_until }}</span>
+                        <span class="location">{{ instance.city }}, {{ instance.country }}</span>
+                      </div>
+                    </div>
+                    <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a>
+                    </div>
+                    <div class="card-price">
+                      <strong>${{ instance.amnt_start_per_hrs|to_int }} - ${{ instance.amnt_end_per_hrs|to_int }}</strong>
+                      <span class="hour">/Hour</span>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <!-- <div class="paginations">
+              <ul class="pager">
+                <li><a class="pager-prev" href="#"></a></li>
+                <li><a class="pager-number" href="#">1</a></li>
+                <li><a class="pager-number" href="#">2</a></li>
+                <li><a class="pager-number" href="#">3</a></li>
+                <li><a class="pager-number" href="#">4</a></li>
+                <li><a class="pager-number" href="#">5</a></li>
+                <li><a class="pager-number active" href="#">6</a></li>
+                <li><a class="pager-number" href="#">7</a></li>
+                <li><a class="pager-next" href="#"></a></li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block static %}
+{% load static %}
+{{ form.media }}
+<style>
+  .selecty .selecty-selected{
+    width: 100%;
+    border: 2px solid #e0e6f6;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    background: #fff;
+    height: 53px;
+    box-shadow: none;
+    padding: 11px 15px 13px 20px;
+    color: #a0abb8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cke_top {
+    white-space: normal;
+    border-bottom: 1px solid #e0e6f7;
+    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 10px;
+    color: #a0abb8;
+    font-size: 14px;
+  }
+  #cke_1_toolbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .cke_chrome{
+    border: 1px solid #e0e6f7;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+  .cke_bottom{
+    border-top: 1px solid #e0e6f7;
+    background-color: #ffffff;
+  }
+</style>
+
+<script>
+
+</script>
+
+{% endblock %}

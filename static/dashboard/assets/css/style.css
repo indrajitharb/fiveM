@@ -1136,6 +1136,12 @@ h6,
   padding: 0px 0px 0px 30px;
   color: #3aab67;
 }
+.card-style-1 .card-info .card-title .status.up-red {
+  background: url(../imgs/page/dashboard/up-red.svg) no-repeat left center;
+  display: inline-block;
+  padding: 0px 0px 0px 30px;
+  color: #e45959;
+}
 .card-style-1 .card-info .card-title .status.down {
   display: inline-block;
   padding: 0px;

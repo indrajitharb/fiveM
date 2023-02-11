@@ -128,11 +128,34 @@ def user_logout(request):
 @check_profile_status
 @role_required(['company',])
 def dashboard(request):
+    profile = get_object_or_404(
+        companyModel.Profile.objects.filter(user=request.user)
+    )
+    jobs = webModel.JobItem.objects.filter(
+        is_deleted=False,
+        is_active=True,
+        user=profile
+    )
+    requested = userModel.UserAppliedJob.objects.filter(
+        is_deleted=False,
+        job__user=profile
+    )
+
+    pending_request = requested.filter(status='pending')
+    approved_request = requested.filter(status='approved')
+    declined_request = requested.filter(status='declined')
+
     context = {
         "title": "Dashboard",
         "is_dashboard": True,
+        "jobs_count": jobs.count(),
+        "requested_count": requested.count(),
+        "pending_request_count": pending_request.count(),
+        "approved_request_count": approved_request.count(),
+        "declined_request_count": declined_request.count(),
+        # "requested_count": jobs.count(),
     }
-    return render(request, "dashboard/base.html", context)
+    return render(request, "dashboard/index.html", context)
 
 
 @check_mode

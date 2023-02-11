@@ -58,5 +58,9 @@ def time_until(value):
 
 @register.filter
 def comma_separator(value):
-    list_data = value.split(',')
+    list_data = []
+
+    if value is not None:
+        list_data = value.split(',')
+
     return list_data

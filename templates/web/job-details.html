@@ -26,6 +26,11 @@
         <div class="col-lg-4 col-md-12 text-lg-end">
           <a class="action-button reload btn btn-apply-icon btn-apply-big hover-up" href="{% url 'users:apply_job' pk=instance.pk %}" data-id="" data-text="{{confirm_apply_message}}" data-title="Are you sure?">Apply now</a>
         </div>
+        <div class="col-xl-7 col-md-7 mb-2">
+          {% for i in instance.skills|comma_separator %}
+            <b class="btn btn-tags-sm mr-5">{{i}}</b>
+          {% endfor %}
+        </div>
       </div>
       <div class="border-bottom pt-10 pb-10"></div>
     </div>

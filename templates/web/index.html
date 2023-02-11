@@ -1,5 +1,6 @@
 {% extends "web/base.html" %}
 {% load static %}
+{% load main_template_tags %}
 
 {% block content %}
 <main class="main">
@@ -390,16 +391,19 @@
                       </div>
                       <div class="card-block-info">
                         <h5><a href="{% url 'web:job_details' pk=instance.pk %}">{{instance.job_title}}</a></h5>
-                        <div class="mt-5"><span class="card-location mr-15">{{instance.state}}, {{instance.country}}</span><span class="card-time">{{instance.post_date}} mins ago</span></div>
+                        <div class="mt-5">
+                          <span class="card-location mr-15">{{instance.state}}, {{instance.country}}</span>
+                          <span class="card-time">{{ instance.post_date|time_until }}</span></div>
                         <div class="card-2-bottom mt-20">
                           <div class="row">
                             <div class="col-xl-7 col-md-7 mb-2">
-                              <b class="btn btn-tags-sm mr-5">Figma</b>
-                              <b class="btn btn-tags-sm mr-5">Adobe XD</b>
+                              {% for i in instance.skills|comma_separator %}
+                                <b class="btn btn-tags-sm mr-5">{{i}}</b>
+                              {% endfor %}
                             </div>
                             <div class="col-xl-5 col-md-5 text-lg-end">
-                              <span class="card-text-price">₹{{instance.amnt_start_per_hrs}} - ₹{{instance.amnt_end_per_hrs}}</span>
-                              <span class="text-muted">/Hour</span>
+                              <span class="card-text-price">${{ instance.amnt_start_per_hrs|to_int }} - ${{ instance.amnt_end_per_hrs|to_int }}</span>
+                              <span class="text-muted">/hour</span>
                             </div>
                           </div>
                         </div>

@@ -56,8 +56,8 @@ class JobItem(models.Model):
 
     class Meta:
         db_table = 'webs_job_item'
-        verbose_name = _('web job_item')
-        verbose_name_plural = _('web job_items')
+        verbose_name = _('web job item')
+        verbose_name_plural = _('web job items')
 
     def __unicode__(self):
         return "%s - %s - %s" % (self.name, self.type)

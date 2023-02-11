@@ -116,17 +116,18 @@ class Profile(models.Model):
         verbose_name = _('user profile')
         verbose_name_plural = _('user profiles')
 
-    def __unicode__(self):
-        return "%s - %s - %s" % (self.user.id, self.name, self.phone)
+    def __str__(self):
+        return str(self.name + self.phone)
 
 
 class UserAppliedJob(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     auto_id = models.PositiveIntegerField(db_index=True, unique=True)
     date_added = models.DateTimeField(db_index=True, auto_now_add=True)
-    user = models.ForeignKey(
-        "auth.User",
+    profile = models.ForeignKey(
+        Profile,
         on_delete=models.CASCADE,
+        related_name="user_applied_job_profile",
     )
     job = models.ForeignKey(
         "web.JobItem",
@@ -139,7 +140,7 @@ class UserAppliedJob(models.Model):
         db_table = 'users_user_applied_job'
         verbose_name = _('user applied job')
         verbose_name_plural = _('user applied jobs')
-        unique_together = ('user', 'job',)
+        unique_together = ('profile', 'job',)
 
     def __unicode__(self):
         return self.job.job_title
@@ -149,9 +150,10 @@ class UserSavedJob(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     auto_id = models.PositiveIntegerField(db_index=True, unique=True)
     date_added = models.DateTimeField(db_index=True, auto_now_add=True)
-    user = models.ForeignKey(
-        "auth.User",
+    profile = models.ForeignKey(
+        Profile,
         on_delete=models.CASCADE,
+        related_name="user_saved_job_profile",
     )
     job = models.ForeignKey(
         "web.JobItem",
@@ -164,7 +166,7 @@ class UserSavedJob(models.Model):
         db_table = 'users_user_saved_job'
         verbose_name = _('user saved job')
         verbose_name_plural = _('user saved jobs')
-        unique_together = ('user', 'job',)
+        unique_together = ('profile', 'job',)
 
     def __unicode__(self):
         return self.job.job_title

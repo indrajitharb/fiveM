@@ -295,12 +295,15 @@ def photo_upload(request):
 def apply_job(request, pk):
     if webModel.JobItem.objects.filter(pk=pk).exists():
         instance = webModel.JobItem.objects.get(pk=pk)
-        if not userModel.UserAppliedJob.objects.filter(user=request.user, job=instance).exists():
+        profile = get_object_or_404(userModel.Profile.objects.filter(
+            user=request.user
+        ))
+
+        if not userModel.UserAppliedJob.objects.filter(profile=profile, job=instance).exists():
             auto_id = get_auto_id(userModel.UserAppliedJob)
             userModel.UserAppliedJob(
                 auto_id=auto_id,
-                # date_added
-                user=request.user,
+                profile=profile,
                 job=instance,
             ).save()
 
@@ -333,11 +336,15 @@ def apply_job(request, pk):
 def save_job(request, pk):
     if webModel.JobItem.objects.filter(pk=pk).exists():
         instance = webModel.JobItem.objects.get(pk=pk)
-        if not userModel.UserSavedJob.objects.filter(user=request.user, job=instance).exists():
+        profile = get_object_or_404(userModel.Profile.objects.filter(
+            user=request.user
+        ))
+
+        if not userModel.UserSavedJob.objects.filter(profile=profile, job=instance).exists():
             auto_id = get_auto_id(userModel.UserSavedJob)
             userModel.UserSavedJob(
                 auto_id=auto_id,
-                user=request.user,
+                profile=profile,
                 job=instance,
             ).save()
 
@@ -348,7 +355,9 @@ def save_job(request, pk):
             }
         else:
             saved_instance = userModel.UserSavedJob.objects.get(
-                user=request.user, job=instance)
+                profile=profile,
+                job=instance
+            )
             saved_instance.delete()
 
             response_data = {

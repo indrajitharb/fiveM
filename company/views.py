@@ -418,7 +418,7 @@ def delete_job(request, pk):
 @is_user_banned
 @check_profile_status
 @role_required(['company',])
-def request(request):
+def requests(request):
     company = get_object_or_404(companyModel.Profile.objects.filter(
         user=request.user
     ))

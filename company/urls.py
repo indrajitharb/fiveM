@@ -18,7 +18,7 @@ urlpatterns = [
     ),
     path('create-job/', views.create_post, name="create_post"),
     path('my-jobs/', views.my_posts, name="my_posts"),
-    path('request/', views.request, name='request'),
+    path('requests/', views.requests, name='request'),
 
     re_path(r'^my-jobs/(?P<pk>.*)/$', views.my_job, name="my_job"),
     re_path(r'^edit-job/(?P<pk>.*)/$', views.edit_post, name="edit_post"),

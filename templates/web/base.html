@@ -67,7 +67,7 @@
                   <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownProfile">
                       <li>
                         {% if current_role == 'Employer' %}
-                          <a class="dropdown-item" href="{% url 'company:my_profile' %}">Profiles</a>
+                          <a class="dropdown-item" href="{% url 'company:dashboard' %}">Dashboard</a>
                         {% else %}
                           <a class="dropdown-item" href="{% url 'users:my_profile' %}">Profiles</a>
                         {% endif %}

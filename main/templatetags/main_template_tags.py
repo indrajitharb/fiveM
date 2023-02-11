@@ -53,27 +53,10 @@ def get_jobs_count(user):
 
 @register.filter
 def time_until(value):
-    now = timezone.now()
-    # print('value', str(value).split(' '))
-    splt = str(value).split(' ')
-    splt1 = str(splt[0]).split('-')
-    splt2 = str(splt[1]).split(':')
-    value_date = timezone.datetime(
-        int(splt1[0]),
-        int(splt1[1]),
-        int(splt1[2]),
-        int(splt2[0]),
-        int(splt2[1]),
-    )
-
-    # print('============')
-    # print('now', now)
-    # print('value', value)
-    # print('value_date', value_date)
-
-    difference = value_date.astimezone() - now
-    # print('difference', difference)
-    # if difference <= timedelta(minutes=1):
-    #     return 'just now'
-
     return '%(time)s ago' % {'time': timesince(value).split(', ')[0]}
+
+
+@register.filter
+def comma_separator(value):
+    list_data = value.split(',')
+    return list_data

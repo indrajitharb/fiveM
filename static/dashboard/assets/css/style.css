@@ -1016,6 +1016,19 @@ h6,
   background-position: 18px 10px;
   padding-left: 47px;
 }
+.btn.icon-remove {
+  background-image: url(../imgs/page/profile/remove-blue.svg);
+  background-repeat: no-repeat;
+  background-position: 18px 12px;
+  padding-left: 47px;
+  background-color: #eff2fb;
+  color: #3b65f5;
+}
+.btn.icon-remove:hover {
+  background-image: url(../imgs/page/profile/remove-white.svg);
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
 .btn.btn-editor {
   background-image: url(../imgs/page/my-resume/btn-edit.svg);
   background-repeat: no-repeat;

@@ -43,9 +43,10 @@ def main_context(request):
 
         "user_session_ok": user_session_ok,
         "user_time_zone": user_time_zone,
+        "confirm_decline_message": "Are you sure want to decline this item.",
+        "confirm_approve_message": "Are you sure want to approve this item.",
         "confirm_delete_message": "Are you sure want to delete this item. All associated data may be removed.",
         "revoke_access_message": "Are you sure to revoke this user's login access",
-        "confirm_school_delete_message": "Your school will deleted permanantly. All data will lost.",
         "confirm_delete_selected_message": "Are you sure to delete all selected items.",
         "confirm_apply_message": "Are you sure want to apply this job.",
         "confirm_read_message": "Are you sure want to mark as read this item.",

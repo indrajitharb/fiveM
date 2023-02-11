@@ -9,13 +9,6 @@
       <div class="container"> 
         <div class="panel-white mb-30">
           <div class="box-padding">
-            <!-- <div class="box-filters-job">
-              <div class="row">
-                <div class="col-xl-6 col-lg-5">
-                  <span class="font-sm text-showing color-text-paragraph">Showing 41-60 of 944 jobs</span>
-                </div>
-              </div>
-            </div> -->
             <div class="row display-list">
               {% for instance in instances %}
                 <div class="col-lg-6">
@@ -31,7 +24,10 @@
                         <span class="location">{{ instance.city }}, {{ instance.country }}</span>
                       </div>
                     </div>
-                    <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a>
+                    <div class="card-tags"> 
+                      {% for i in instance.skills|comma_separator %}
+                        <a class="btn btn-tags-sm mb-10 mr-5" href="#">{{i}}</a>
+                      {% endfor %}
                     </div>
                     <div class="card-price">
                       <strong>${{ instance.amnt_start_per_hrs|to_int }} - ${{ instance.amnt_end_per_hrs|to_int }}</strong>

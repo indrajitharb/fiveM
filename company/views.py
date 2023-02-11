@@ -423,7 +423,7 @@ def requests(request):
         user=request.user
     ))
     instances = userModel.UserAppliedJob.objects.filter(
-        is_expired=False,
+        is_deleted=False,
         job__user=company
     )
     context = {
@@ -432,3 +432,55 @@ def requests(request):
         "instances": instances,
     }
     return render(request, 'dashboard/request.html', context)
+
+
+@check_mode
+@login_required
+@role_required(['company'])
+def approve_request(request, pk):
+    if userModel.UserAppliedJob.objects.filter(pk=pk).exists():
+        instance = userModel.UserAppliedJob.objects.get(pk=pk)
+        instance.status = 'approved'
+        instance.save()
+
+        response_data = {
+            "status": "true",
+            "redirect": "true",
+            "title": "Success",
+            "message": "Request successfully approved.",
+        }
+    else:
+        response_data = {
+            "status": "false",
+            "stable": "true",
+            "title": "Error 404",
+            "message": "Request not found"
+        }
+
+    return HttpResponse(json.dumps(response_data), content_type='application/javascript')
+
+
+@check_mode
+@login_required
+@role_required(['company'])
+def decline_request(request, pk):
+    if userModel.UserAppliedJob.objects.filter(pk=pk).exists():
+        instance = userModel.UserAppliedJob.objects.get(pk=pk)
+        instance.status = 'declined'
+        instance.save()
+
+        response_data = {
+            "status": "true",
+            "redirect": "true",
+            "title": "Success",
+            "message": "Request successfully declined.",
+        }
+    else:
+        response_data = {
+            "status": "false",
+            "stable": "true",
+            "title": "Error 404",
+            "message": "Request not found"
+        }
+
+    return HttpResponse(json.dumps(response_data), content_type='application/javascript')

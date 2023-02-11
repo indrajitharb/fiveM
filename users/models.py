@@ -12,6 +12,12 @@ STATUS_CHOICES = (
     ("failed", "Failed")
 )
 
+JOB_APPLIED_STATUS_CHOICES = (
+    ("pending", "Pending"),
+    ("approved", "Approved"),
+    ("declined", "Declined")
+)
+
 GENDER_CHOICES = (
     ("", "Your Gender"),
     ("M", "Male"),
@@ -134,7 +140,12 @@ class UserAppliedJob(models.Model):
         limit_choices_to={"is_deleted": False},
         on_delete=models.CASCADE,
     )
-    is_expired = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
+    status = models.CharField(
+        max_length=10,
+        choices=JOB_APPLIED_STATUS_CHOICES,
+        default='pending'
+    )
 
     class Meta:
         db_table = 'users_user_applied_job'
@@ -160,7 +171,7 @@ class UserSavedJob(models.Model):
         limit_choices_to={"is_deleted": False},
         on_delete=models.CASCADE,
     )
-    is_expired = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'users_user_saved_job'

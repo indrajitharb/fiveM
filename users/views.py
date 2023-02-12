@@ -184,18 +184,30 @@ def resend_otp(request, pk):
 @is_user_banned
 @role_required(['employee',])
 def my_profile(request):
+    applied_jobs = None
+    saved_jobs = None
+
     if userModel.Profile.objects.filter(user=request.user).exists():
         instance = userModel.Profile.objects.get(user=request.user)
+        applied_jobs = userModel.UserAppliedJob.objects.filter(
+            profile=instance,
+        )
+        saved_jobs = userModel.UserSavedJob.objects.filter(
+            profile=instance,
+        )
     else:
         instance = None
 
     form = userForms.ProfileForm(instance=instance)
     photoForm = userForms.PhotoForm(instance=instance)
+
     context = {
         "title": "My Account",
         "is_my_account": True,
         "form": form,
         "photoForm": photoForm,
+        "applied_jobs": applied_jobs,
+        "saved_jobs": saved_jobs,
     }
     return render(request, 'users/candidate-profile.html', context)
 

@@ -952,7 +952,24 @@ h6,
   font-size: 12px;
   text-transform: capitalize;
 }
-
+.btn.btn-apply-now-green {
+  background-color: #e0e6f7;
+  color: #00c070;
+  padding: 12px 10px;
+  min-width: 95px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.btn.btn-apply-now-red {
+  background-color: #e0e6f7;
+  color: #ff0000;
+  padding: 12px 10px;
+  min-width: 95px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
 .btn-apply {
   background-color: #3c65f5;
   color: #ffffff;
@@ -1863,6 +1880,12 @@ label {
 .card-grid-2 .btn-apply-now {
   color: #3c65f5;
 }
+.card-grid-2 .btn.btn-apply-now-green {
+  color: #00c070;
+}
+.card-grid-2 .btn.btn-apply-now-red {
+  color: #ff0000;
+}
 .card-grid-2:hover {
   border-color: #b4c0e0;
   background-color: #ffffff;
@@ -1870,6 +1893,14 @@ label {
 .card-grid-2:hover .btn-apply-now {
   color: #ffffff;
   background-color: #3c65f5;
+}
+.card-grid-2:hover .btn.btn-apply-now-green {
+  color: #ffffff;
+  background-color: #00c070;
+}
+.card-grid-2:hover .btn.btn-apply-now-red {
+  color: #ffffff;
+  background-color: #ff0000;
 }
 .card-grid-2 a {
   text-decoration: none;
@@ -8691,7 +8722,6 @@ ul li:last-child .card-list-4 {
 }
 /*# sourceMappingURL=style.css.map */
 
-
 /*page loader */
 html:not(.ismobile) .page-loader {
   position: fixed;
@@ -9904,4 +9934,3 @@ body.swal2-iosfix {
   padding-left: 40px;
 }
 /* selectify */
-

@@ -152,6 +152,15 @@
                                   <span class="card-text-price">${{ instance.job.amnt_start_per_hrs|to_int }} - ${{ instance.job.amnt_end_per_hrs|to_int }}</span>
                                   <span class="text-muted">/hour</span>
                                 </div>
+                                <div class="col-lg-5 col-5 text-end">
+                                  {% if instance.status == 'approved' %}
+                                    <strong class="btn btn-apply-now-green"> Approved </strong>
+                                  {% elif instance.status == 'declined' %}
+                                    <strong class="btn btn-apply-now-red"> Declined </strong>
+                                  {% else %}
+                                    <strong class="btn btn-apply-now" > Pending </strong>
+                                  {% endif %}
+                                </div>
                               </div>
                             </div>
                           </div>

@@ -423,7 +423,7 @@ def delete_job(request, pk):
         is_deleted=False,
         pk=pk,
     ))
-    instance.delete()
+    instance.is_deleted = True
     instance.save()
 
     response_data = {

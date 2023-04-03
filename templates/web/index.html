@@ -13,8 +13,8 @@
               <h1 class="heading-banner wow animate__animated animate__fadeInUp">The <span class="color-brand-2">Easiest Way</span><br class="d-none d-lg-block">to Get Your New Job</h1>
               <div class="banner-description mt-20 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Each month, more than 3 million job seekers turn to website in their search for work, making over 140,000 applications every single day</div>
               <div class="mt-30"> 
-                <a href="{% url 'app' %}" class="btn btn-default mr-15">Get Started</a>
-                <a href="#" class="btn btn-border-brand-2">Learn more</a>
+                <a href="{% url 'app' %}" class="btn btn-default mr-15">I want to be hired!</a>
+                <a href="{% url 'company:login' %}" class="btn btn-border-brand-2">I'm hiring!</a>
               </div>
               <div class="mt-50 mb-20"><span class="font-md color-text-paragraph-2">Trusted by</span></div>
               <div class="box-logos-485">
@@ -422,6 +422,183 @@
     </section>
   {% else %}
     <!-- create -->
+    <section class="section-box overflow-visible mt-100 mb-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <div class="box-image-job">
+              <!-- <img class="img-job-1" alt="jobBox" src= "{% static 'assets/imgs/page/homepage1/img-chart.png' %}">  -->
+              <img class="img-job-2" alt="jobBox" src= "{% static 'assets/imgs/page/homepage1/controlcard.png' %}">
+              <figure class="wow animate__animated animate__fadeIn">
+                <img alt="jobBox" src="{% static 'assets/imgs/page/homepage1/img1.png' %}"></figure>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <div class="content-job-inner"><span class="color-text-mutted text-32">Millions Of Jobs. </span>
+              <h2 class="text-52 wow animate__animated animate__fadeInUp">Find The One That&rsquo;s <span class="color-brand-2">Right</span> For You</h2>
+              <div class="mt-40 pr-50 text-md-lh28 wow animate__animated animate__fadeInUp">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide. The right job is out there.</div>
+              <div class="mt-40">
+                <div class="wow animate__animated animate__fadeInUp"><a class="btn btn-default" href="{% url 'company:login' %}">Start with us</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-box mt-70">
+      <div class="section-box wow animate__animated animate__fadeIn">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Popular category</h2>
+            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Search and connect with the right candidates faster.</p>
+          </div>
+          <div class="box-swiper mt-50 layout-brand-1">
+            <div class="swiper-container swiper-group-6 mh-none swiper">
+              <div class="swiper-wrapper pb-70 pt-5">                                       
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big1.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Marketing &amp; Sales</h6>
+                          <p class="color-white font-xs"><span>123</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big2.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Human resource</h6>
+                          <p class="color-white font-xs"><span>154</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big3.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Finance</h6>
+                          <p class="color-white font-xs"><span>116</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big4.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Market Research</h6>
+                          <p class="color-white font-xs"><span>24</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big5.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">UI/UX Developer</h6>
+                          <p class="color-white font-xs"><span>54</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big6.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Content writer</h6>
+                          <p class="color-white font-xs"><span>87</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src= "{% static 'assets/imgs/page/homepage4/img-big5.png' %}"><a href="jobs-grid.html">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Designers</h6>
+                          <p class="color-white font-xs"><span>87</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next swiper-button-next-1"></div>
+            <div class="swiper-button-prev swiper-button-prev-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section class="section-box mt-50">
+      <div class="section-box wow animate__animated animate__fadeIn">
+        <div class="container">
+          <div class="text-start">
+            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Popular category</h2>
+            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Search and connect with the right candidates faster.</p>
+          </div>
+          <div class="box-swiper mt-50">
+            <div class="swiper-container swiper-group-6 mh-none swiper">
+              <div class="swiper-wrapper pb-70 pt-5">
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src="{% static 'assets/imgs/page/homepage2/img-big1.png' %}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Marketing &amp; Sales</h6> 
+                          <p class="color-white font-xs"><span>123</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src="{% static 'assets/imgs/page/homepage2/img-big2.png' %}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Human Resource</h6>
+                          <p class="color-white font-xs"><span>154</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src="{% static 'assets/imgs/page/homepage2/img-big3.png'%}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Finance</h6>
+                          <p class="color-white font-xs"><span>546</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src="{% static 'assets/imgs/page/homepage2/img-big1.png'%}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Market Research</h6>
+                          <p class="color-white font-xs"><span>24</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image"> <img src="{% static 'assets/imgs/page/homepage2/img-big2.png'%}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Furniture Design</h6>
+                          <p class="color-white font-xs"><span>54</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+                <div class="swiper-slide hover-up">
+                  <div class="card-grid-5 card-category hover-up" style="background-image" > <img src="{% static 'assets/imgs/page/homepage2/img-big3.png'%}"><a href="#">
+                      <div class="box-cover-img">
+                        <div class="content-bottom">
+                          <h6 class="color-white mb-5">Content Writer</h6>
+                          <p class="color-white font-xs"><span>87</span><span>  Jobs Available</span></p>
+                        </div>
+                      </div></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next swiper-button-next-1"></div>
+            <div class="swiper-button-prev swiper-button-prev-1"></div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
     <section class="section-box mt-50 mb-30 bg-border-3 pt-100 pb-100">
       <div class="container">
         <div class="row">
@@ -441,9 +618,10 @@
         </div>
       </div>
     </section>
+    
     <section class="section-box mt-70 mb-40">
       <div class="container">
-        <div class="text-start">
+        <div class="text-center">
           <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">How It Works</h2>
           <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Just via some simple steps, you will find your ideal candidates you’r looking for!</p>
         </div>
@@ -482,4 +660,3 @@
 {% load static %}
     
 {% endblock %}
-    

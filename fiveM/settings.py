@@ -73,27 +73,27 @@ FIVEM_LOGIN_PASSWORD = 'fiveM_login_1@23!4###'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'fiveM',
-#         'USER': 'dinkan',
-#         'PASSWORD': 'indrajitharb',
-#         'HOST': 'localhost',
-#         'PORT': ''
-#     },
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fiveM',
-        'USER': 'sabeelkm',
-        'PASSWORD': 'helloworld',
+        'USER': 'dinkan',
+        'PASSWORD': 'indrajitharb',
         'HOST': 'localhost',
         'PORT': ''
     },
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'fiveM',
+#         'USER': 'sabeelkm',
+#         'PASSWORD': 'helloworld',
+#         'HOST': 'localhost',
+#         'PORT': ''
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
